@@ -1,39 +1,63 @@
-.fullscreen {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+/* styles.css */
+body {
+    background-color: var(--background-color, #f2f2f2);
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 2;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-.fullscreen img {
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+img {
     max-width: 100%;
-    max-height: 100%;
+    height: auto;
+    margin: 10px;
     cursor: pointer;
 }
 
-#closeFullscreenBtn {
+.fullscreen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fullscreen-image {
+    max-width: 90%;
+    max-height: 80vh;
+}
+
+.close-btn {
+    cursor: pointer;
+}
+
+.theme-toggle {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: transparent;
-    border: none;
-    color: #fff;
     cursor: pointer;
-    font-size: 20px;
 }
-/* ... (previous CSS code) ... */
-.theme-toggle {
-    background: transparent;
-    border: none;
-    font-size: 24px;
+
+.nav-arrow {
     cursor: pointer;
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    font-size: 36px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+}
+
+.prev-arrow {
+    left: 10px;
+}
+
+.next-arrow {
+    right: 10px;
 }
