@@ -98,10 +98,11 @@ const gallery = document.getElementById('imageGallery');
 const fullscreen = document.getElementById('fullscreen');
 const fullscreenImage = document.getElementById('fullscreenImage');
 const closeFullscreenBtn = document.getElementById('closeFullscreenBtn');
-const themeToggleBtn = document.querySelector('.theme-toggle'); // Select by class name
+const themeToggleBtn = document.querySelector('.theme-toggle');
+const prevImageBtn = document.getElementById('prevImage');
+const nextImageBtn = document.getElementById('nextImage');
 let currentIndex = 0;
 
-// Define a variable to track the current theme
 let currentTheme = 'light';
 
 function addImagesToGallery() {
@@ -117,26 +118,27 @@ function openFullscreen(imageUrl) {
     currentIndex = imageUrls.indexOf(imageUrl);
     fullscreenImage.src = imageUrl;
     fullscreen.style.display = 'flex';
+    prevImageBtn.style.display = currentIndex === 0 ? 'none' : 'block';
+    nextImageBtn.style.display = currentIndex === imageUrls.length - 1 ? 'none' : 'block';
 
-    // Add a click event listener to the fullscreen image to move to the next image
-    fullscreenImage.addEventListener('click', showNextImage);
+    prevImageBtn.addEventListener('click', showPreviousImage);
+    nextImageBtn.addEventListener('click', showNextImage);
 }
 
 function closeFullscreen() {
     fullscreen.style.display = 'none';
-
-    // Remove the click event listener when closing fullscreen
-    fullscreenImage.removeEventListener('click', showNextImage);
+    prevImageBtn.removeEventListener('click', showPreviousImage);
+    nextImageBtn.removeEventListener('click', showNextImage);
 }
 
 function toggleTheme() {
     if (currentTheme === 'light') {
         document.body.style.setProperty('--background-color', '#000');
-        themeToggleBtn.innerText = '☀️'; // Change to sun emoji for dark theme
+        themeToggleBtn.innerText = '☀️';
         currentTheme = 'dark';
     } else {
         document.body.style.setProperty('--background-color', '#f2f2f2');
-        themeToggleBtn.innerText = '🌙'; // Change to moon emoji for light theme
+        themeToggleBtn.innerText = '🌙';
         currentTheme = 'light';
     }
 }
@@ -154,7 +156,7 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-themeToggleBtn.addEventListener('click', toggleTheme); // Add click event for theme toggle
+themeToggleBtn.addEventListener('click', toggleTheme);
 
 function showPreviousImage() {
     if (currentIndex > 0) {
